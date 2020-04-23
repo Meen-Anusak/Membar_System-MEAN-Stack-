@@ -3,11 +3,23 @@ var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 var passport = require('passport');
+const mongoose = require('mongoose');
+const cors = require('cors');
 
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 
+const config = require('./configs/config');
+
 var app = express();
+
+app.use(cors());
+
+mongoose.connect(config.MONGO_URI, {
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
+    useCreateIndex: true
+})
 
 app.use(logger('dev'));
 app.use(express.json());
