@@ -3,20 +3,20 @@
         <div class="col-md-5 mx-auto mt-5">
             <h1>Register</h1>
             <hr>
-            <form action="">
+            <form [formGroup]="form" (submit)="onSubmit()">
                 <div class="form-group">
                     <label for="">Name:</label>
-                    <input type="email" name="" id="" class="form-control" placeholder="name">
+                    <input type="text" name="" id="" class="form-control" placeholder="name" formControlName="name">
                 </div>
                 <div class="form-group">
                     <label for="">Email:</label>
-                    <input type="email" name="" id="" class="form-control" placeholder="email">
+                    <input type="email" name="" id="" class="form-control" placeholder="email" formControlName="email">
                 </div>
                 <div class="form-group">
                     <label for="">Password:</label>
-                    <input type="password" name="" id="" class="form-control" placeholder="password">
+                    <input type="password" name="" id="" class="form-control" placeholder="password" formControlName="password">
                 </div>
-                <button type="submit" class="btn btn-success float-right">register</button>
+                <button [disabled]="!form.valid" type="submit" class="btn btn-success float-right">register</button>
             </form>
         </div>
     </div>

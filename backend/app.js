@@ -10,6 +10,7 @@ var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
 
 const config = require('./configs/config');
+const errorHandler = require('./middlewares/errorHandler');
 
 var app = express();
 
@@ -30,5 +31,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
+
+app.use(errorHandler);
 
 module.exports = app;

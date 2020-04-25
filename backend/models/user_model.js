@@ -1,6 +1,6 @@
  const mongoose = require('mongoose');
  const Schema = mongoose.Schema;
-
+ const bcrypt = require('bcryptjs');
 
  const UserSchema = Schema({
      name: {
@@ -20,7 +20,6 @@
          require: true,
          trim: true,
          minlength: 6,
-         maxlength: 20,
      },
      role: {
          type: String,
@@ -30,4 +29,16 @@
 
  })
 
+ UserSchema.methods.encryptPassword = async function(password) {
+     const salt = await bcrypt.genSalt(10);
+     const hashPassword = await bcrypt.hash(password, salt);
+     return hashPassword;
+ }
+ UserSchema.methods.comparePassword = async function(password) {
+     const isMatch = await bcrypt.compare(password, this.password);
+     return isMatch;
+ }
+
  var User = mongoose.model('users', UserSchema);
+
+ module.exports = User;
