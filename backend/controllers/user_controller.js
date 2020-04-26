@@ -65,3 +65,12 @@ exports.Login = async(req, res, next) => {
         next(error)
     }
 }
+
+exports.getProfile = async(req, res, next) => {
+    const { role, name, email } = req.user;
+    res.json({
+        name: name,
+        email: email,
+        role: role
+    })
+}

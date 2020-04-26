@@ -1,4 +1,5 @@
 export const AppURL = {
     Login:'login',
-    Register:'register'
+    Register:'register',
+    Authen:'authen'
 }
