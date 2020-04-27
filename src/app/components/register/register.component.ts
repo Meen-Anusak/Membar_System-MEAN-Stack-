@@ -12,6 +12,7 @@ import { AppURL } from 'src/app/app.routing';
 export class RegisterComponent implements OnInit {
 
   form: FormGroup
+  AppURL = AppURL
 
   constructor(
     private builder: FormBuilder,

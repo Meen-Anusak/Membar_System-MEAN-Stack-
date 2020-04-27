@@ -1,19 +1,29 @@
-<section class="container mt-5">
-    <div class="row">
-        <div class="col-md-5 mx-auto mt-5">
-            <h1>Login</h1>
-            <hr>
-            <form [formGroup]="form" (submit)="onSubmit()">
-                <div class="form-group">
-                    <label for="">Email:</label>
-                    <input type="email" name="" id="" class="form-control" placeholder="email" formControlName="email">
-                </div>
-                <div class="form-group">
-                    <label for="">Password:</label>
-                    <input type="password" name="" id="" class="form-control" placeholder="password" formControlName="password">
-                </div>
-                <button type="submit" class="btn btn-success float-right">login</button>
-            </form>
-        </div>
+<section class="material-half-bg">
+    <div class="cover"></div>
+</section>
+<section class="login-content">
+    <div class="logo">
+        <h1>Vali</h1>
+    </div>
+    <div class="login-box" style="height: 27rem;">
+        <form class="login-form" [formGroup]="form" (submit)="onSubmit()">
+            <h3 class="login-head"><i class="fa fa-lg fa-fw fa-user"></i>LOGIN</h3>
+            <div class="form-group">
+                <label class="control-label">EMAIL</label>
+                <input class="form-control" type="email" placeholder="Email" autofocus formControlName="email">
+            </div>
+            <div class="form-group">
+                <label class="control-label">PASSWORD</label>
+                <input class="form-control" type="password" placeholder="Password" formControlName="password">
+            </div>
+
+            <div class="form-group btn-container">
+                <button type="submit" style="background-color: #009688;" class="btn btn-block text-white"><i class="fa fa-sign-in fa-lg fa-fw"></i>Login</button>
+            </div>
+            <div class="mt-3 text-center ">
+                <span><p>Don't have an account? </p></span> <a [routerLink]="['/', AppURL.Register]">Register</a>
+            </div>
+        </form>
+
     </div>
 </section>

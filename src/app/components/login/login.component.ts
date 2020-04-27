@@ -16,6 +16,7 @@ export class LoginComponent implements OnInit {
 
   form: FormGroup
   returnURL: string;
+  AppURL = AppURL
 
   constructor(
     private account: AccountService,
