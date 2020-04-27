@@ -5,12 +5,16 @@
     <div class="logo">
         <h1>Register</h1>
     </div>
-    <div class="login-box" style="height: 33rem;">
+    <div class="login-box" style="height: 37rem;">
         <form class="login-form" [formGroup]="form" (submit)="onSubmit()">
             <h3 class="login-head"><i class="fa fa-lg fa-fw fa-user-plus"></i>Register</h3>
             <div class="form-group">
-                <label class="control-label">USERNAME</label>
-                <input class="form-control" type="email" placeholder="Username" autofocus formControlName="name">
+                <label class="control-label">FIRSTNAME</label>
+                <input class="form-control" type="text" placeholder="Firstname" autofocus formControlName="fname" autofocus>
+            </div>
+            <div class="form-group">
+                <label class="control-label">LASTNAME</label>
+                <input class="form-control" type="text" placeholder="Lastname" autofocus formControlName="lname">
             </div>
             <div class="form-group">
                 <label class="control-label">EMAIL</label>

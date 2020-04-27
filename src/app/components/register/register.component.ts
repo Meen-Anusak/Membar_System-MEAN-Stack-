@@ -3,6 +3,7 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { AccountService } from '../shared/account.service';
 import { Router } from '@angular/router';
 import { AppURL } from 'src/app/app.routing';
+import { AlertService } from 'src/app/shared/services/alert.service';
 
 @Component({
   selector: 'app-register',
@@ -17,7 +18,8 @@ export class RegisterComponent implements OnInit {
   constructor(
     private builder: FormBuilder,
     private account: AccountService,
-    private router : Router
+    private router : Router,
+    private alert : AlertService
   ) { }
 
   ngOnInit(): void {
@@ -26,7 +28,8 @@ export class RegisterComponent implements OnInit {
 
   CreateFormRegister() {
     this.form = this.builder.group({
-      name: ['',[Validators.required]],
+      fname: ['',[Validators.required]],
+      lname:['',[Validators.required]],
       email: ['',[Validators.required,Validators.email]],
       password: ['',[Validators.required,Validators.minLength(6)]],
     })
@@ -34,9 +37,9 @@ export class RegisterComponent implements OnInit {
 
   onSubmit() {
     if (this.form.invalid) return;
-    this.account.Register(this.form.value).subscribe(
-      res => alert(res.message)
-      )
+    this.account.Register(this.form.value).subscribe(res =>{
+      this.alert.alertNotify(res.message)
+    })
     
   }
 

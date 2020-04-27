@@ -14,6 +14,7 @@ export class AuthenGuard implements CanActivate {
   canActivate(
     next: ActivatedRouteSnapshot,
     state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
+  
     if (this.authen.getAccessToken()) {
       return true;
     }

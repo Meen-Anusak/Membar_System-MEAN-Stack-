@@ -26,12 +26,10 @@ export class AccountService {
     
   }
 
-  
-
-  getProfile(token?: string):Observable<any>{
+  getProfile(token: string):Observable<any>{
     const myHeader ={
       'Authorization': 'Bearer '+token
     }
-    return this.http.get(this.getUser,{headers:myHeader})
+    return this.http.get<any>(this.getUser,{headers:myHeader})
   }
 }

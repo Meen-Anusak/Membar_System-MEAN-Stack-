@@ -5,6 +5,7 @@ import { AuthenService } from 'src/app/shared/services/authen.service';
 import { Router, ActivatedRoute } from '@angular/router';
 import { AuthenURL } from 'src/app/authentication/authen.url';
 import { AppURL } from 'src/app/app.routing';
+import { AlertService } from 'src/app/shared/services/alert.service';
 
 
 @Component({
@@ -23,7 +24,8 @@ export class LoginComponent implements OnInit {
     private builder: FormBuilder,
     private authen: AuthenService,
     private router : Router,
-    private activateRoute: ActivatedRoute
+    private activateRoute: ActivatedRoute,
+    private alert : AlertService
     
   ) { 
     this.activateRoute.params.forEach(params => {
@@ -47,6 +49,7 @@ export class LoginComponent implements OnInit {
     this.account.Login(this.form.value)
       .subscribe(
         res => {
+          this.alert.alertNotify(res.message,'success')
           this.authen.setAcessToken(res.access_token)
           this.router.navigateByUrl(this.returnURL);
         }

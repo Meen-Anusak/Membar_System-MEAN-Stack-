@@ -7,17 +7,18 @@ exports.register = async(req, res, next) => {
 
 
     try {
-        const { name, email, password } = req.body;
+        const { fname, lname, email, password } = req.body;
 
 
         const user = await User.findOne({ email: email });
         if (user) {
-            const error = new Error('อีเมล์นี้มีผู้ใช้งานแล้ว กรุณาลองใหม่อีกครั้ง');
+            const error = new Error('อีเมล์นี้มีผู้ใช้งานแล้ว');
             error.statusCode = 400;
             throw error;
         } else {
             let newuser = new User();
-            newuser.name = name;
+            newuser.fname = fname;
+            newuser.lname = lname
             newuser.email = email;
             newuser.password = await newuser.encryptPassword(password);
 
@@ -52,13 +53,15 @@ exports.Login = async(req, res, next) => {
         const token = await jwt.sign({
             id: user._id,
             role: user.role,
+
         }, configs.SECRET_KEY, { expiresIn: '1 day' });
 
         const expiresIn = jwt.decode(token)
 
         res.json({
             access_token: token,
-            exp: expiresIn.exp
+            exp: expiresIn.exp,
+            message: 'เข้าสู่ระบบสำเร็จ'
         })
 
     } catch (error) {
@@ -67,9 +70,10 @@ exports.Login = async(req, res, next) => {
 }
 
 exports.getProfile = async(req, res, next) => {
-    const { role, name, email } = req.user;
+    const { role, fname, lname, email } = req.user;
     res.json({
-        name: name,
+        fname: fname,
+        lname: lname,
         email: email,
         role: role
     })
