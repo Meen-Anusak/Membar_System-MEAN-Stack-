@@ -7,19 +7,20 @@ import { AppURL } from '../app.routing';
 @Injectable({
   providedIn: 'root'
 })
-export class AuthenGuard implements CanActivate {
-  constructor(private authen : AuthenService,private router : Router){
+export class UnauthenGuard implements CanActivate {
 
-  }
+  constructor(
+    private authen:AuthenService,
+    private router : Router
+  ){}
   canActivate(
     next: ActivatedRouteSnapshot,
     state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
-    if (this.authen.getAccessToken()) {
-      return true;
+    if(this.authen.getAccessToken()){
+      this.router.navigate(['/',AppURL.Authen])
+      return false
     }
-    this.router.navigate(['/',AppURL.Login,{returnURL :state.url}]);
-    return false;
-    
+    return true
   }
   
 }
