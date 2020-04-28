@@ -3,6 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { IRgister } from '../register/register.model';
 import { AuthenService } from 'src/app/shared/services/authen.service';
+import { IUser } from 'src/app/authentication/user.interface';
 
 @Injectable({
   providedIn: 'root'
@@ -26,10 +27,10 @@ export class AccountService {
     
   }
 
-  getProfile(token: string):Observable<any>{
-    const myHeader ={
+  getProfile(token: string):Observable<IUser>{
+    const Header ={
       'Authorization': 'Bearer '+token
     }
-    return this.http.get<any>(this.getUser,{headers:myHeader})
+    return this.http.get<IUser>(this.getUser,{headers:Header})
   }
 }
