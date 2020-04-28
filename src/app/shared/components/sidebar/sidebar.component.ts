@@ -22,7 +22,9 @@ export class SidebarComponent implements OnInit {
   constructor(
     private account : AccountService,
     private authen : AuthenService
-    ) { }
+    ) {
+      
+     }
 
   ngOnInit(): void {
     this.account.getProfile(this.authen.getAccessToken())

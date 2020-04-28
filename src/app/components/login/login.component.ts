@@ -40,7 +40,7 @@ export class LoginComponent implements OnInit {
   CreateFormLogin() {
     this.form = this.builder.group({
       email: ['', [Validators.required]],
-      password: ['', [Validators.required, Validators.minLength(6)]]
+      password: ['', [Validators.required]]
     })
   }
 

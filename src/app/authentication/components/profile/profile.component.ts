@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { AppURL } from 'src/app/app.routing';
+import { AuthenURL } from '../../authen.url';
+import { FormBuilder, FormGroup } from '@angular/forms';
 
 @Component({
   selector: 'app-profile',
@@ -7,9 +10,28 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ProfileComponent implements OnInit {
 
-  constructor() { }
+  AppURL = AppURL;
+  AuthenURL = AuthenURL
+  form : FormGroup
+
+  constructor(
+    private builder : FormBuilder
+  ) { }
 
   ngOnInit(): void {
+    this.CreateFromEditProfile()
+  }
+
+  CreateFromEditProfile(){
+    this.form = this.builder.group({
+      fname :[],
+      lname:[],
+      email:[],
+      image:[],
+    })
+  }
+  onSubmit(){
+    
   }
 
 }
