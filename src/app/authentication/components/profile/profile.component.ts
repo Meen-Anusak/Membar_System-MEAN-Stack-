@@ -31,7 +31,7 @@ export class ProfileComponent implements OnInit {
     })
   }
   onSubmit(){
-    
+    console.log(this.form.value);  
   }
 
 }
